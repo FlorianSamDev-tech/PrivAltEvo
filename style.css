@@ -1,0 +1,1318 @@
+/* === Montserrat === */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* === Open Sans === */
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+
+/* --- Variables de Couleurs Globales --- */
+:root {
+    /* --- NOUVELLE PALETTE : #f3f3f3, #343434, #83fab6, #fff --- */
+
+    /* Couleurs de marque et d'accentuation principales */
+    --brand-primary: #343434;   /* Ton gris très foncé, pour les titres, accents sombres, texte principal */
+    --brand-accent: #83fab6;    /* Ton vert vif, la couleur d'accentuation principale pour les boutons, liens, icônes */
+    --brand-light-grey: #f3f3f3;/* Ton gris très clair, pour les fonds de section/cartes en light mode */
+    --brand-white: #fff;  
+    --brand-white-nav : #f3f3f3;      /* Ton blanc pur, pour les fonds de page en light mode et texte sur fonds foncés, et les nouvelles entêtes demandées */
+
+    /* --- FOND ET TEXTE (LIGHT MODE) --- */
+    --bg-page: var(--brand-white);        /* Fond général de la page (blanc pur) */
+    --bg-section: var(--brand-light-grey);/* Fond des sections/cartes (gris très clair) */
+    
+    --text-primary: var(--brand-primary);    /* Texte principal (gris très foncé) */
+    --text-secondary: #555;                  /* Un gris un peu moins foncé pour le texte secondaire */
+    --text-light: var(--brand-white);        /* Texte clair (sur fonds foncés) */
+    
+    --link-color: var(--brand-primary);       /* Couleur des liens */
+    --link-hover-color: var(--brand-accent);  /* Couleur des liens au survol (vert vif) */
+    
+    --border-color: rgba(52, 52, 52, 0.1); /* Bordures subtiles basées sur le gris foncé */
+
+    /* --- NAVIGATION ET BOUTONS (LIGHT MODE) --- */
+    --nav-bg: var(--brand-white-nav);           /* Fond de la barre de navigation (blanc pur) */
+    --nav-text: var(--brand-primary);      /* Texte de navigation (foncé sur fond clair) */
+    --nav-hover: var(--brand-accent);      /* Couleur au survol des liens de navigation (vert vif) */
+    
+    --button-bg: var(--brand-accent);      /* Fond des boutons (vert vif) */
+    --button-text: var(--brand-primary);   /* Texte des boutons (gris très foncé) */
+    --button-hover-bg: #63d196;            /* Un vert légèrement plus foncé au survol */
+
+    /* Polices (tes polices actuelles sont parfaites) */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+
+body.dark-mode {
+    /* --- FOND ET TEXTE (DARK MODE) --- */
+    --bg-page: var(--brand-primary);      /* Fond général de la page (gris très foncé) */
+    --bg-section: #2a2a2a;                /* Un gris légèrement plus clair que le fond de page pour le contraste des sections */
+    
+    --text-primary: var(--brand-white);      /* Texte principal (blanc pur) */
+    --text-secondary: var(--brand-light-grey); /* Texte secondaire (gris très clair) */
+    --text-light: var(--brand-white);        /* Texte clair (sur fonds sombres - reste le même) */
+    
+    --link-color: var(--brand-accent);       /* Couleur des liens (vert vif) */
+    --link-hover-color: var(--brand-white);  /* Couleur des liens au survol (blanc pur) */
+    
+    --border-color: rgba(255, 255, 255, 0.1); /* Bordures subtiles basées sur le blanc */
+
+    /* --- NAVIGATION ET BOUTONS (DARK MODE) --- */
+    --nav-bg: #202020;                     /* Fond de la barre de navigation (encore plus foncé pour la profondeur) */
+    --nav-text: var(--brand-white);        /* Texte de navigation (clair) */
+    --nav-hover: var(--brand-accent);      /* Couleur au survol des liens de navigation (vert vif) */
+    
+    --button-bg: var(--brand-accent);      /* Fond des boutons (vert vif) */
+    --button-text: var(--brand-primary);   /* Texte des boutons (gris très foncé) */
+    --button-hover-bg: var(--brand-white); /* Fond des boutons au survol (blanc pur) */
+}
+
+/* --- Transitions Globales pour une bascule douce --- */
+* {
+    transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, fill 0.6s ease, stroke 0.6s ease;
+}
+
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-primary); /* Utilisation de la variable */
+    background-color: var(--bg-page); /* Utilisation de la variable */
+    overflow-x: hidden; /* Empêche le défilement horizontal */
+    /* La transition est déjà définie dans le sélecteur universel pour tous les éléments */
+}
+
+a {
+    text-decoration: none;
+    color: var(--link-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- Header & Navigation --- */
+header {
+    background-color: var(--nav-bg);
+    color: var(--nav-text);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Ombre légère pour light mode */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+body.dark-mode header {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4); /* Ombre plus prononcée en dark mode */
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--nav-text);
+}
+
+.logo:hover {
+    color: var(--nav-hover);
+}
+
+.dot-logo {
+    color: var(--brand-accent); /* Utilise la couleur d'accentuation */
+}
+
+.logo-img {
+    border-radius: 60px;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list li {
+    margin-left: 2rem;
+}
+
+.nav-list a {
+    color: var(--nav-text);
+    font-weight: 600;
+    padding: 0.5rem 0;
+    position: relative;
+}
+
+.nav-list a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--nav-hover);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-list a:hover::after,
+.nav-list a.active::after {
+    width: 100%;
+}
+
+.nav-list a:hover {
+    color: var(--nav-hover);
+}
+
+/* Menu Hamburger (caché sur desktop) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--nav-text);
+    margin: 4px 0;
+    transition: 0.4s;
+}
+
+/* Styles pour le bouton Dark/Light Mode */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--nav-text);
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 1rem;
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* L'opacité sur le noir pour le mode clair */
+}
+body.dark-mode .theme-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* L'opacité sur le blanc pour le mode sombre */
+}
+
+.theme-toggle-btn .icon-dark {
+    display: none;
+}
+
+body.dark-mode .theme-toggle-btn .icon-light {
+    display: none;
+}
+
+body.dark-mode .theme-toggle-btn .icon-dark {
+    display: inline-block;
+}
+
+
+/* --- Hero Section (Accueil) --- */
+.home-hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* Pour un fond uni qui s'adapte au mode */
+    background-color: var(--bg-page); /* Utilise le fond clair/sombre de la page */
+    color: var(--text-primary); /* Le texte s'adapte au mode */
+    padding: 2rem;
+    /* Tu peux ajouter une image de fond ici si tu veux, par exemple : */
+    /* background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('URL_IMAGE_LIGHT_MODE.jpg') no-repeat center center/cover; */
+    /* background-attachment: fixed; */
+}
+/* Si tu as des images de fond différentes pour chaque mode, tu les géreras ici */
+/* body.dark-mode .home-hero {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('URL_IMAGE_DARK_MODE.jpg') no-repeat center center/cover;
+} */
+
+
+.hero-content {
+    max-width: 800px;
+    animation: fadeIn 1.5s ease-out;
+}
+
+.hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    color: var(--text-primary); /* Le titre principal suit la couleur de texte */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Ombre pour la lisibilité sur image si utilisée */
+}
+
+.citation-style {
+    background-color: #83fab6;
+    border: 1px solid #83fab6;
+    border-radius: 12px;
+}
+
+.dark-mode #quote {
+    color: #343434;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    color: var(--text-secondary); /* Le paragraphe peut être en texte secondaire */
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+/* --- Animations --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* --- Services Page Content --- */
+.services-page-content {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.services-intro {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.services-intro h2 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    color: var(--brand-primary); /* Titre de section important */
+}
+body.dark-mode .services-intro h2 {
+    color: var(--text-primary); /* Titre de section clair en dark mode */
+}
+
+.services-intro .intro-text {
+    font-size: 1.15rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: var(--text-secondary);
+    opacity: 0.9;
+    text-align: justify;
+}
+
+.service-category {
+    margin-bottom: 4rem;
+}
+
+.category-title {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: var(--text-primary);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.category-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background-color: var(--brand-accent); /* Ligne d'accent */
+    border-radius: 2px;
+}
+body.dark-mode .category-title::after {
+    background-color: var(--brand-accent); /* Ligne d'accent en dark mode */
+}
+
+/* ----------------------------------SVG CONFIG START--------------------------------------- */
+
+/* --- Styles Communs pour les Logos --- */
+.logo-categories {
+    height: 35px;
+    width: auto;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* --- LIGHT MODE : Visibilité par défaut --- */
+.logo-categories.logo-light {
+    display: inline-block;
+}
+
+.logo-categories.logo-dark {
+    display: none;
+}
+
+/* --- DARK MODE : Quand la classe 'dark-mode' est sur le body --- */
+body.dark-mode .logo-categories.logo-light {
+    display: none;
+}
+
+body.dark-mode .logo-categories.logo-dark {
+    display: inline-block;
+}
+
+/* ------------------------ SVG CONFIG END ------------------------------- */
+
+.service-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background-color: var(--bg-section);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+body.dark-mode .service-card {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h4 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    color: var(--brand-primary); /* Titre de carte */
+}
+body.dark-mode .card-header h4 {
+    color: var(--text-primary); /* Titre de carte clair en dark mode */
+}
+
+.tag {
+    font-size: 1.8rem;
+}
+
+/* Tags s'alignent avec la palette */
+.tag-green, .tag-blue {
+    color: var(--brand-accent); /* Utilisez la couleur d'accentuation pour tous les tags */
+}
+body.dark-mode .tag-green, body.dark-mode .tag-blue {
+    color: var(--brand-accent); /* Les tags restent en accent en dark mode */
+}
+
+
+.card-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+.card-description {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+}
+
+.card-details h5 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.card-details ul {
+    list-style: none;
+    margin-left: 0;
+    margin-bottom: 1.5rem;
+}
+
+.card-details ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.card-details ul li::before {
+    content: '•';
+    color: var(--brand-accent); /* Puce personnalisée */
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+body.dark-mode .card-details ul li::before {
+    color: var(--brand-accent); /* Puce en couleur d'accent en dark mode */
+}
+
+.card-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+    margin-top: auto;
+}
+
+.card-footer .price {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #2a2a2a;
+    background-color: #83fab6;
+    border-radius: 10px;
+    padding: 6px;
+    text-align: center;
+}
+
+/* --- DÉBUT DES CORRECTIONS POUR LES PRIX EN #333 --- */
+/* Cibler les textes des prix "En ligne : 150-200 €" et "Présentiel (hors frais) : 250-350 €" */
+.card-footer ul li {
+    font-size: 1rem;
+    color: #333; /* Forcer le gris foncé pour TOUT le texte des listes de tarifs */
+}
+
+
+/* Si tu as des spans ou strong à l'intérieur de ces li qui étaient déjà en vert, il faut les surcharger */
+.card-footer ul li strong,
+.card-footer ul li span {
+    color: #333 !important; /* Appliquer le gris foncé avec !important */
+}
+
+/* En dark mode, on veut toujours que les prix soient en vert (couleur d'accentuation) */
+body.dark-mode .card-footer ul li,
+body.dark-mode .card-footer ul li strong,
+body.dark-mode .card-footer ul li span {
+    color: var(--brand-accent) !important; /* L'accent du prix en dark mode reste en vert */
+}
+/* --- FIN DES CORRECTIONS POUR LES PRIX EN #333 --- */
+
+
+.card-footer .duration {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+/* Ce sélecteur (card-footer ul li span) ne devrait plus affecter les prix directs grâce à !important ci-dessus */
+/* Il est conservé au cas où d'autres spans dans les listes du footer auraient besoin de la couleur d'accent */
+.card-footer ul li span {
+    font-weight: 600;
+    /* La couleur sera surchargée par la règle ci-dessus pour les prix,
+       mais restera var(--brand-accent) pour les autres spans */
+    color: var(--brand-accent); /* Les points forts en couleur d'accent */
+}
+body.dark-mode .card-footer ul li span {
+    color: var(--brand-accent); /* Les points forts en dark mode */
+}
+
+
+.contact-action {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    padding: 2rem;
+    background-color: var(--bg-section);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    font-weight: 700;
+}
+body.dark-mode .contact-action {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.contact-action p {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+}
+
+/* --- About Page Content --- */
+.about-page-content {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    /* Modification : L'entête de la page À Propos passe en #ffffff */
+    background-color: var(--brand-white); /* Fond de l'entête en blanc pur */
+    background-image: none; /* Supprime l'image de fond si elle existait */
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    color: var(--brand-primary); /* Texte en gris foncé sur cette entête claire */
+}
+body.dark-mode .about-hero {
+    background-color: var(--brand-primary); /* Garde un fond foncé en dark mode */
+    color: var(--text-light); /* Texte clair en dark mode */
+}
+
+
+.about-hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-hero-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.about-me-section {
+    background-color: var(--bg-section);
+    border-radius: 15px;
+    padding: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+body.dark-mode .about-me-section {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.about-content-wrapper {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
+}
+
+.about-image-container {
+    flex: 0 0 400px;
+    max-width: 400px;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
+}
+
+.profile-photo {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+body.dark-mode .profile-photo {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+
+.profile-photo:hover {
+    transform: scale(1.02);
+}
+
+.about-text-container {
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.about-text-container h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--brand-primary);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--brand-accent); /* Ligne d'accent */
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+body.dark-mode .about-text-container h3 {
+    color: var(--text-primary); /* Titre en dark mode */
+    border-bottom-color: var(--brand-accent); /* Ligne en dark mode */
+}
+
+.about-text-container p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.about-text-container p:last-of-type {
+    margin-bottom: 2rem;
+}
+
+.trust-cta {
+    font-weight: 700;
+    color: var(--brand-accent) !important; /* Couleur accentuée pour le CTA */
+    font-size: 1.2rem !important;
+    margin-top: 2rem;
+    margin-bottom: 2rem !important;
+}
+body.dark-mode .trust-cta {
+    color: var(--brand-accent) !important; /* Couleur accentuée en dark mode */
+}
+
+
+/* --- Contact Page Content --- */
+.contact-page-content {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.contact-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    /* Modification : L'entête de la page Contact passe en #ffffff */
+    background-color: var(--brand-white); /* Fond de l'entête en blanc pur */
+    background-image: none; /* Supprime l'image de fond si elle existait */
+    padding: 4rem 2rem;
+    border-radius: 15px;
+    color: var(--brand-primary); /* Texte en gris foncé sur cette entête claire */
+}
+body.dark-mode .contact-hero {
+    background-color: var(--brand-primary); /* Garde un fond foncé en dark mode */
+    color: var(--text-light); /* Texte clair en dark mode */
+}
+
+
+.contact-hero-content h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.contact-hero-content p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+}
+
+.contact-details-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.contact-card, .availability-card {
+    background-color: var(--bg-section);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+body.dark-mode .contact-card, body.dark-mode .availability-card {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+
+
+.contact-card h2, .availability-card h2 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--brand-primary);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+body.dark-mode .contact-card h2, body.dark-mode .availability-card h2 {
+    color: var(--text-primary);
+}
+
+.contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.contact-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.icon-large {
+    font-size: 2.2rem;
+    color: var(--brand-accent); /* Icônes des contacts en couleur d'accent */
+    min-width: 40px;
+    text-align: center;
+}
+body.dark-mode .icon-large {
+    color: var(--brand-accent); /* Icônes en dark mode */
+}
+
+.item-info h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.item-info p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+}
+
+.item-info a {
+    color: var(--text-primary);
+}
+
+.item-info a:hover {
+    color: var(--brand-accent); /* Lien au survol en couleur d'accent */
+}
+body.dark-mode .item-info a:hover {
+    color: var(--brand-accent); /* Lien au survol en dark mode */
+}
+
+/* Styles pour la carte des disponibilités */
+.availability-info p {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.availability-info ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+}
+
+.availability-info ul li {
+    font-size: 1.05rem;
+    margin-bottom: 0.7rem;
+    color: var(--text-primary);
+}
+
+.availability-info ul li i {
+    color: var(--brand-accent);
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+}
+body.dark-mode .availability-info ul li i {
+    color: var(--brand-accent);
+}
+
+.availability-info ul li strong {
+    color: var(--brand-primary);
+}
+body.dark-mode .availability-info ul li strong {
+    color: var(--text-primary);
+}
+
+.availability-info .note {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--text-secondary);
+    border-top: 1px dashed var(--border-color);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+/* --- Footer --- */
+footer {
+    background-color: var(--nav-bg); /* Utilise le même fond que la nav pour la cohérence */
+    color: var(--nav-text);
+    border-top: 1px solid var(--border-color);
+    padding: 3rem 2rem 1.5rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.footer-logo .logo {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.footer-socials {
+    text-align: center;
+    flex-grow: 95;
+    min-width: 200px;
+}
+
+.footer-socials h3 {
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--brand-primary);
+}
+body.dark-mode .footer-socials h3 {
+    color: var(--text-primary);
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.social-icons a {
+    color: var(--nav-text);
+    font-size: 1.8rem;
+}
+
+.social-icons a:hover {
+    color: var(--nav-hover);
+}
+
+.footer-links {
+    text-align: right;
+    flex-grow: 1;
+    min-width: 150px;
+}
+
+.footer-links h3 {
+    margin-bottom: 1rem;
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    color: var(--brand-primary);
+}
+body.dark-mode .footer-links h3 {
+    color: var(--text-primary);
+}
+
+.footer-links ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links ul li a {
+    color: var(--nav-text);
+    font-size: 0.95rem;
+}
+
+.footer-links ul li a:hover {
+    color: var(--nav-hover);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.footer-bottom a {
+    color: var(--text-secondary);
+    text-decoration: underline;
+}
+
+.footer-bottom a:hover {
+    color: var(--brand-accent); /* Lien au survol en couleur d'accent */
+}
+body.dark-mode .footer-bottom a:hover {
+    color: var(--brand-accent); /* Lien au survol en dark mode */
+}
+
+
+/* --- Responsive Design --- */
+
+/* Tablettes (768px et moins) */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 1.5rem;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: var(--nav-bg);
+        position: absolute;
+        top: 80px;
+        left: 0;
+        padding: 1rem 0;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-list.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .nav-list li {
+        margin: 0.5rem 0;
+    }
+
+    .nav-list a {
+        padding: 0.8rem 0;
+        display: block;
+        width: 100%;
+    }
+
+    .theme-toggle-btn {
+        margin: 1rem 0 0.5rem 0;
+        padding: 0.8rem;
+        font-size: 1.8rem;
+        align-self: center;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    /* Services Page Responsive */
+    .services-page-content {
+        padding: 0 1rem;
+        margin: 2rem auto;
+    }
+
+    .services-intro h2 {
+        font-size: 2.5rem;
+    }
+
+    .service-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .service-card {
+        padding: 1.5rem;
+    }
+
+    .card-header h4 {
+        font-size: 1.3rem;
+    }
+
+    .tag {
+        font-size: 1.5rem;
+    }
+
+    .contact-action {
+        padding: 1.5rem;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    .contact-action p {
+        font-size: 1.3rem;
+    }
+
+    /* About Page Responsive */
+    .about-page-content {
+        padding: 0 1rem;
+        margin: 2rem auto;
+    }
+
+    .about-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .about-hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .about-hero-content p {
+        font-size: 1rem;
+    }
+
+    .about-content-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .about-image-container {
+        flex: none;
+        max-width: 80%;
+        width: 100%;
+        margin: 0 auto;
+        position: static;
+        top: auto;
+    }
+
+    .profile-photo {
+        max-width: 100%;
+    }
+
+    .about-text-container h3 {
+        font-size: 1.8rem;
+        text-align: center;
+        display: block;
+    }
+
+    .about-text-container p {
+        font-size: 1rem;
+    }
+
+    /* Contact Page Responsive */
+    .contact-page-content {
+        padding: 0 1rem;
+        margin: 2rem auto;
+    }
+
+    .contact-hero {
+        padding: 3rem 1.5rem;
+    }
+
+    .contact-hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    .contact-hero-content p {
+        font-size: 1rem;
+    }
+
+    .contact-details-section {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-card, .availability-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .contact-card h2, .availability-card h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .icon-large {
+        font-size: 1.8rem;
+        min-width: 30px;
+    }
+
+    .item-info h4 {
+        font-size: 1.1rem;
+    }
+
+    .item-info p, .availability-info p, .availability-info ul li {
+        font-size: 0.95rem;
+    }
+
+    .availability-info ul li i {
+        font-size: 1rem;
+    }
+
+    /* Footer Responsive pour tablettes */
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-logo, .footer-socials, .footer-links {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .footer-links ul {
+        padding: 0;
+        text-align: center;
+    }
+
+    .footer-socials h3, .footer-links h3 {
+        text-align: center;
+    }
+}
+
+/* Mobiles (480px et moins) */
+@media (max-width: 480px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .btn-primary {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+
+    /* Services Page Mobile */
+    .services-intro h2 {
+        font-size: 2rem;
+    }
+
+    .category-title {
+        font-size: 1.8rem;
+    }
+
+    .emoji {
+        font-size: 1.5rem;
+    }
+
+    .card-header h4 {
+        font-size: 1.2rem;
+    }
+
+    .tag {
+        font-size: 1.5rem;
+    }
+
+    /* About Page Mobile */
+    .about-hero-content h1 {
+        font-size: 2.2rem;
+    }
+
+    .about-me-section {
+        padding: 2rem 1.5rem;
+    }
+
+    .about-text-container h3 {
+        font-size: 1.5rem;
+    }
+
+    .about-text-container p {
+        font-size: 0.9rem;
+    }
+
+    /* Contact Page Mobile */
+    .contact-card h2, .availability-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .icon-large {
+        font-size: 1.5rem;
+    }
+
+    .item-info h4 {
+        font-size: 1rem;
+    }
+
+    .item-info p, .availability-info p, .availability-info ul li {
+        font-size: 0.85rem;
+    }
+
+    /* Footer Mobile */
+    .footer-logo .logo {
+        font-size: 1.8rem;
+    }
+
+    .social-icons {
+        gap: 1rem;
+        font-size: 1.5rem;
+    }
+}
+
+/* Animations du menu hamburger */
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
